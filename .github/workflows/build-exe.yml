@@ -1,0 +1,29 @@
+name: Gerar EXE Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+
+      - name: Gerar executável
+        run: pyinstaller --onefile teste_script.py
+
+      - name: Enviar exe como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: executavel-windows
+          path: dist/teste_script.exe
