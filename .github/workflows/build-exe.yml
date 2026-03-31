@@ -23,7 +23,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Gerar executável
-        run: pyinstaller --onefile teste_script.py
+        run: pyinstaller --onefile --noconsole teste_script.py
 
       - name: Enviar exe como artefato
         uses: actions/upload-artifact@v4
